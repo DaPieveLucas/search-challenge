@@ -6,8 +6,6 @@ import 'features/login/cubit/login_cubit.dart';
 import 'features/login/view/login_page.dart';
 import 'features/search_tool/cubit/cubit/searchs_cubit.dart';
 
-import 'features/search_tool/view/search_page.dart';
-
 void main() async {
   await Inject.init();
 
@@ -34,7 +32,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: SearchPage(),
+          home: const LoginPage(),
         ));
   }
 }

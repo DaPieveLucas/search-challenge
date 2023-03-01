@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 
 import '../../features/search_tool/model/search_link_model.dart';
@@ -12,10 +14,10 @@ class ApiService {
     final Dio dio = Dio();
 
     final response = await dio.post('$_baseUrl/',
-        data: SearchLinkModel(query: query).toJson(),
+        data: jsonEncode(query),
         options: Options(
           headers: {
-            'Content-type': 'application/json',
+            'Content-type': 'x-www-form-urlencoded',
             'app_id': '2323',
             'app_hash': 'jadeuboa'
           },

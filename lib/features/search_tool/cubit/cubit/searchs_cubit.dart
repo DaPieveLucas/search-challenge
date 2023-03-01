@@ -25,8 +25,6 @@ class SearchsCubit extends Cubit<SearchsCubitState> {
 
       final retrievedData = SearchLinkModel.fromMap(response.data);
 
-      print('this retrieved user: ${retrievedData.toString()}');
-
       emit(SearchsCubitSuccess(
         retrievedData.title ?? '',
         retrievedData.link ?? '',

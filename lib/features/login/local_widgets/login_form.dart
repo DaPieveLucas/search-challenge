@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search_challenge/features/login/cubit/login_cubit.dart';
 import 'package:search_challenge/features/login/local_widgets/password_input_field.dart';
@@ -55,16 +54,34 @@ class _LoginFormState extends State<LoginForm> {
                       .read<LoginCubit>()
                       .passwordValidator(_passwordController.text),
                 ),
+                const SizedBox(
+                  height: 50,
+                ),
                 SizedBox(
                   width: 290.0,
                   child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.blueAccent),
-                      onPressed: () {},
-                      child: Text(
-                        'Login',
-                        style: TextStyle(fontSize: 15),
-                      )),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blueAccent),
+                    onPressed: state.isLoading
+                        ? null
+                        : () {
+                            if (_formKey.currentState!.validate()) {
+                              widget.loginCubit.login(
+                                  email: _emailController.text,
+                                  password: _passwordController.text);
+                            }
+                          },
+                    child: state.isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator.adaptive(),
+                          )
+                        : const Text(
+                            'Login',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                  ),
                 )
               ],
             ),

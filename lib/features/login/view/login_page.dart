@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:search_challenge/features/login/cubit/login_cubit.dart';
 
 import '../../../app/constants/app_constants.dart';
 import '../local_widgets/login_form.dart';
 
-//transformar em stf
-class LoginPage extends StatelessWidget {
-  const LoginPage({required this.cubit, super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
-  final LoginCubit cubit;
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late LoginCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _cubit = context.read<LoginCubit>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +38,7 @@ class LoginPage extends StatelessWidget {
                   AppConstants.loginImage,
                   height: 250,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Text(
-                      'Login',
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                LoginForm(loginCubit: cubit),
+                LoginForm(loginCubit: _cubit),
               ],
             ),
           ),

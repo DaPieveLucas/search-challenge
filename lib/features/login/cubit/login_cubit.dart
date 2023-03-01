@@ -18,21 +18,21 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  String emailValidator(String? emValue) {
+  String? emailValidator(String? emValue) {
     if (emValue == null || emValue.isEmpty) {
       return 'Please enter an email address';
     } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(emValue)) {
       return 'Please enter a valid email';
     }
-    return '';
+    return null;
   }
 
-  passwordValidator(String? passValue) {
+  String? passwordValidator(String? passValue) {
     if (passValue == null || passValue.isEmpty) {
       return 'Please enter a password';
     } else if (passValue.length < 5) {
       return 'Password must be at least 6 characters long';
     }
-    return '';
+    return null;
   }
 }
