@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search_challenge/app/core/inject.dart';
 
-import '../features/search_tool/cubit/cubit/searchs_cubit.dart';
-// import '../features/search_tool/cubit/search_cubit.dart';
-import '../features/search_tool/view/search_page.dart';
+import 'features/login/cubit/login_cubit.dart';
+import 'features/login/view/login_page.dart';
+import 'features/search_tool/cubit/cubit/searchs_cubit.dart';
+
+import 'features/search_tool/view/search_page.dart';
 
 void main() async {
   await Inject.init();
@@ -21,7 +23,10 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<SearchsCubit>(
             create: (context) => getIt<SearchsCubit>(),
-          )
+          ),
+          BlocProvider<LoginCubit>(
+            create: (context) => getIt<LoginCubit>(),
+          ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -29,7 +34,10 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-          home: const SearchPage(),
+          home: SearchPage(),
         ));
   }
 }
+
+
+// LoginPage(cubit: BlocProvider.of<LoginCubit>(context))

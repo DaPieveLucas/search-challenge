@@ -14,15 +14,20 @@ class SearchsCubitLoading extends SearchsCubitState {
 }
 
 class SearchsCubitSuccess extends SearchsCubitState {
-  SearchsCubitSuccess(this.searchs);
+  SearchsCubitSuccess(this.title, this.link);
 
-  final List<SearchLinkModel> searchs;
+  final String title;
+  final String link;
 
   @override
-  List<Object> get props => [searchs];
+  List<Object> get props => [title, link];
 }
 
 class SearchsCubitError extends SearchsCubitState {
+  SearchsCubitError(this.error);
+
+  final String error;
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [error];
 }

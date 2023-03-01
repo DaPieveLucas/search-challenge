@@ -15,19 +15,24 @@ class SearchsCubit extends Cubit<SearchsCubitState> {
 
   ApiService client = ApiService();
 
-  void fetchGoogleSearch(int fetchUserId) async {
+  void postGoogleSearch({String? title, String? link, String? query}) async {
     try {
       emit(SearchsCubitLoading());
 
-      final Response response = await client.getGoogleSearch(fetchUserId);
+      final Response response = await client.postGoogleSearch(query: query);
 
-      final List<SearchLinkModel> results = response.data['data']
-          .map<SearchLinkModel>((e) => SearchLinkModel.fromMap(e))
-          .toList();
+      print('user created: ${response.data}');
 
-      emit(SearchsCubitSuccess(results));
+      final retrievedData = SearchLinkModel.fromMap(response.data);
+
+      print('this retrieved user: ${retrievedData.toString()}');
+
+      emit(SearchsCubitSuccess(
+        retrievedData.title ?? '',
+        retrievedData.link ?? '',
+      ));
     } catch (e) {
-      emit(SearchsCubitError());
+      emit(SearchsCubitError(e.toString()));
     }
   }
 }
