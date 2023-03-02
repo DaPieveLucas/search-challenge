@@ -67,22 +67,44 @@ class _SearchPageState extends State<SearchPage> {
               ),
             );
           } else if (state is SearchsCubitSuccess) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    state.title,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    state.link,
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                  TextButton(
+            return Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 80,
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 5, color: Colors.blueAccent),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          state.title,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    ElevatedButton(
                       onPressed: () => _cubit.setLaunchUrl(state.link),
-                      child: const Text('I am feeling lucky'))
-                ],
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueAccent),
+                      child: const Text(
+                        'I am feeling lucky',
+                        style: TextStyle(fontSize: 15),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           } else {

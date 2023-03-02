@@ -20,6 +20,14 @@ class _LoginFormState extends State<LoginForm> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  late LoginCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _cubit = widget.loginCubit;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,18 +52,16 @@ class _LoginFormState extends State<LoginForm> {
               children: [
                 EmailInputField(
                   emailTextController: _emailController,
-                  emaValidationCubit: (value) => context
-                      .read<LoginCubit>()
-                      .emailValidator(_emailController.text),
+                  emaValidationCubit: (value) =>
+                      _cubit.emailValidator(_emailController.text),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 PasswordInputField(
                   passwordTextController: _passwordController,
-                  passValidationCubit: (value) => context
-                      .read<LoginCubit>()
-                      .passwordValidator(_passwordController.text),
+                  passValidationCubit: (value) =>
+                      _cubit.passwordValidator(_passwordController.text),
                 ),
                 const SizedBox(
                   height: 50,
@@ -69,7 +75,7 @@ class _LoginFormState extends State<LoginForm> {
                         ? null
                         : () {
                             if (_formKey.currentState!.validate()) {
-                              widget.loginCubit.login(
+                              _cubit.login(
                                   email: _emailController.text,
                                   password: _passwordController.text);
                             }

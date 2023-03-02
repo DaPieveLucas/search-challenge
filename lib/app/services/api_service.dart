@@ -10,12 +10,13 @@ class ApiService {
     required String? query,
   }) async {
     final Dio dio = Dio();
+    var body = {'search': query};
 
     final response = await dio.post('$_baseUrl/',
-        data: jsonEncode(query),
+        data: jsonEncode(body),
         options: Options(
           headers: {
-            'Content-type': 'x-www-form-urlencoded',
+            'Content-type': 'application/json',
             'app_id': '2323',
             'app_hash': 'jadeuboa'
           },
