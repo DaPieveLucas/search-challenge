@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../../features/search_tool/model/search_link_model.dart';
-
 class ApiService {
   final _baseUrl = 'https://reqres.in/api';
   //mudar baseUrl para o endereço correto e colocar o endpoint correto

@@ -26,8 +26,8 @@ class _LoginFormState extends State<LoginForm> {
     return BlocListener<LoginCubit, LoginState>(
       listener: (context, state) {
         if (state.isSuccess) {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => SearchPage()));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => const SearchPage()));
         } else if (state.isLoading) {
           const CircularProgressIndicator.adaptive();
         } else if (state.isFailure) {
@@ -47,6 +47,9 @@ class _LoginFormState extends State<LoginForm> {
                   emaValidationCubit: (value) => context
                       .read<LoginCubit>()
                       .emailValidator(_emailController.text),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 PasswordInputField(
                   passwordTextController: _passwordController,

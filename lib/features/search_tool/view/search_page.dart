@@ -5,9 +5,23 @@ import 'package:flutter_svg/svg.dart';
 import '../../../app/constants/app_constants.dart';
 import '../cubit/cubit/searchs_cubit.dart';
 
-class SearchPage extends StatelessWidget {
-  SearchPage({super.key});
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
+
+  @override
+  State<SearchPage> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends State<SearchPage> {
   final TextEditingController _controller = TextEditingController();
+  late SearchsCubit _cubit;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _cubit = context.read<SearchsCubit>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +31,7 @@ class SearchPage extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                context
-                    .read<SearchsCubit>()
-                    .postGoogleSearch(query: _controller.text);
+                _cubit.postGoogleSearch(query: _controller.text);
               },
               icon: const Icon(Icons.search))
         ],
@@ -44,8 +56,9 @@ class SearchPage extends StatelessWidget {
           } else if (state is SearchsCubitError) {
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text('Sorry, we have encoutered an error'),
+                  Text('Sorry, we have encountered an error'),
                   Icon(
                     Icons.close,
                     size: 50,
@@ -56,9 +69,19 @@ class SearchPage extends StatelessWidget {
           } else if (state is SearchsCubitSuccess) {
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text(state.title),
-                  Text(state.link),
+                  Text(
+                    state.title,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  Text(
+                    state.link,
+                    style: const TextStyle(fontSize: 20),
+                  ),
+                  TextButton(
+                      onPressed: () => _cubit.setLaunchUrl(state.link),
+                      child: const Text('I am feeling lucky'))
                 ],
               ),
             );
@@ -67,7 +90,7 @@ class SearchPage extends StatelessWidget {
               padding: const EdgeInsets.all(20.0),
               child: SingleChildScrollView(
                 child: SizedBox(
-                  height: MediaQuery.of(context).size.height,
+                  height: MediaQuery.of(context).size.height / 1.3,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

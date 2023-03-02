@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Search Challenge',
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
@@ -36,6 +36,3 @@ class MyApp extends StatelessWidget {
         ));
   }
 }
-
-
-// LoginPage(cubit: BlocProvider.of<LoginCubit>(context))
