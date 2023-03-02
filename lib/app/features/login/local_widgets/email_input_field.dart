@@ -16,7 +16,7 @@ class EmailInputField extends StatelessWidget {
     return AuthTextField(
       formValidator: emaValidationCubit,
       keyboardType: TextInputType.emailAddress,
-      hint: 'Email',
+      hint: 'User',
       isRequiredField: true,
       icon: Icons.email_outlined,
       textController: emailTextController,

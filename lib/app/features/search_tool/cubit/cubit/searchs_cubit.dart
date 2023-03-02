@@ -26,20 +26,19 @@ class SearchsCubit extends Cubit<SearchsCubitState> {
     }
   }
 
-  Future<void> postGoogleSearch(
-      {String? title, String? link, String? query}) async {
+  Future<void> postGoogleSearch({String? query}) async {
     try {
       emit(SearchsCubitLoading());
 
       final Response response = await client.postGoogleSearch(query: query);
 
-      print('user created: ${response.data}');
-
-      final retrievedData = SearchLinkModel.fromMap(response.data);
+      final List<SearchLinkModel> retrievedData = response.data['data']
+          .map<SearchLinkModel>((e) => SearchLinkModel.fromMap(e))
+          .toList();
 
       emit(SearchsCubitSuccess(
-        retrievedData.title ?? 'no title retrieved',
-        retrievedData.link ?? 'no link retrieved',
+        retrievedData.first.title ?? 'no title retrieved',
+        retrievedData.first.link ?? 'no link retrieved',
       ));
     } catch (e) {
       emit(SearchsCubitError(e.toString()));

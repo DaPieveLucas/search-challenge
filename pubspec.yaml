@@ -36,6 +36,7 @@ dependencies:
   flutter_bloc: ^8.1.2
   flutter_svg: ^2.0.2
   get_it: ^7.2.0
+  shared_preferences: ^2.0.18
   url_launcher: ^6.1.10
 
 dev_dependencies:
@@ -56,6 +57,7 @@ flutter:
   assets:
     - assets/login_image.svg
     - assets/search_image.svg
+    - assets/google_logo.svg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
