@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:search_challenge/features/login/cubit/login_cubit.dart';
-
-import '../../../app/constants/app_constants.dart';
+import '../../../constants/app_constants.dart';
+import '../cubit/login_cubit.dart';
 import '../local_widgets/login_form.dart';
 
 class LoginPage extends StatefulWidget {

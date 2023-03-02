@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:search_challenge/features/login/cubit/login_cubit.dart';
-import 'package:search_challenge/features/login/local_widgets/password_input_field.dart';
 
 import '../../search_tool/view/search_page.dart';
+import '../cubit/login_cubit.dart';
 import 'email_input_field.dart';
+import 'password_input_field.dart';
 
 class LoginForm extends StatefulWidget {
   final LoginCubit loginCubit;

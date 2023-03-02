@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:search_challenge/features/login/local_widgets/auth_text_field.dart';
+import 'auth_text_field.dart';
 
 class EmailInputField extends StatelessWidget {
   const EmailInputField(

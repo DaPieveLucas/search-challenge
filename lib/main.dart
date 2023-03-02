@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search_challenge/app/core/inject.dart';
 
-import 'features/login/cubit/login_cubit.dart';
-import 'features/login/view/login_page.dart';
-import 'features/search_tool/cubit/cubit/searchs_cubit.dart';
+import 'app/features/login/cubit/login_cubit.dart';
+import 'app/features/login/view/login_page.dart';
+import 'app/features/search_tool/cubit/cubit/searchs_cubit.dart';
 
 void main() async {
   await Inject.init();
